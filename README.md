@@ -4,6 +4,9 @@
 
 ### Variable declarations with let and const
 
+- `let` variables are block scoped
+- 'var' variables are function scoped
+
 ### Blocks and IIFEs
 
 ### Strings
