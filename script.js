@@ -67,27 +67,63 @@
 // }
 // console.log(i); // 23
 
-/**
- * Blocks and IIFEs
- */
+// /**
+//  * Blocks and IIFEs
+//  */
 
-/*  Similar to an IIFE */
-{
-  // variables private to this block scope
-  const a = 1;
-  let b = 2;
-  // variables accessible outside of the block scope
-  var c = 3;
+// /*  Similar to an IIFE */
+// {
+//   // variables private to this block scope
+//   const a = 1;
+//   let b = 2;
+//   // variables accessible outside of the block scope
+//   var c = 3;
+// }
+
+// // console.log(a + b); // ReferenceError, a and b are BLOCK scoped
+// console.log(c);
+
+// /**
+//  * ES5
+//  */
+// // (function() {
+// //   var c = 3;
+// // })();
+// // console.log(c);
+
+// Strings & template literals in ES6
+
+let firstName = "john";
+let lastName = "smith";
+const yearOfBirth = 1990;
+function calcAge(year) {
+  return 2019 - year;
 }
 
-// console.log(a + b); // ReferenceError, a and b are BLOCK scoped
-console.log(c);
+// ES5
+console.log(
+  "This is " +
+    firstName +
+    " " +
+    lastName +
+    ". He was born in " +
+    yearOfBirth +
+    ". Today he is " +
+    calcAge(yearOfBirth) +
+    " years old"
+);
 
-/**
- * ES5
- */
-// (function() {
-//   var c = 3;
-// })();
+// ES6: Strings with template literals
+console.log(
+  `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(
+    yearOfBirth
+  )} years old`
+);
 
-// console.log(c);
+// New string method in ES6, startsWith(''), includes('') & endsWith('') -- CASE SENSITIVE!
+const n = `${firstName} + ${lastName}`;
+console.log(n.startsWith("j")); // false
+console.log(n.endsWith("th")); // true
+console.log(n.includes(" ")); // true
+console.log(firstName.repeat(5)); // johnjohnjohnjohn
+console.log(`${firstName} `.repeat(5)); // john john john john
