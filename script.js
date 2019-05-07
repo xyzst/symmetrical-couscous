@@ -93,37 +93,64 @@
 
 // Strings & template literals in ES6
 
-let firstName = "john";
-let lastName = "smith";
-const yearOfBirth = 1990;
-function calcAge(year) {
-  return 2019 - year;
-}
+// let firstName = "john";
+// let lastName = "smith";
+// const yearOfBirth = 1990;
+// function calcAge(year) {
+//   return 2019 - year;
+// }
+
+// // ES5
+// console.log(
+//   "This is " +
+//     firstName +
+//     " " +
+//     lastName +
+//     ". He was born in " +
+//     yearOfBirth +
+//     ". Today he is " +
+//     calcAge(yearOfBirth) +
+//     " years old"
+// );
+
+// // ES6: Strings with template literals
+// console.log(
+//   `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(
+//     yearOfBirth
+//   )} years old`
+// );
+
+// // New string method in ES6, startsWith(''), includes('') & endsWith('') -- CASE SENSITIVE!
+// const n = `${firstName} + ${lastName}`;
+// console.log(n.startsWith("j")); // false
+// console.log(n.endsWith("th")); // true
+// console.log(n.includes(" ")); // true
+// console.log(firstName.repeat(5)); // johnjohnjohnjohn
+// console.log(`${firstName} `.repeat(5)); // john john john john
+
+/**
+ * Arrow functions
+ */
+
+const years = [1990, 1965, 1982, 1937];
 
 // ES5
-console.log(
-  "This is " +
-    firstName +
-    " " +
-    lastName +
-    ". He was born in " +
-    yearOfBirth +
-    ". Today he is " +
-    calcAge(yearOfBirth) +
-    " years old"
-);
+var agesES5 = years.map(function(x) {
+  return 2019 - x;
+});
+console.log(agesES5);
 
-// ES6: Strings with template literals
-console.log(
-  `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(
-    yearOfBirth
-  )} years old`
-);
+// ES6
+let agesES6 = years.map(x => 2019 - x);
 
-// New string method in ES6, startsWith(''), includes('') & endsWith('') -- CASE SENSITIVE!
-const n = `${firstName} + ${lastName}`;
-console.log(n.startsWith("j")); // false
-console.log(n.endsWith("th")); // true
-console.log(n.includes(" ")); // true
-console.log(firstName.repeat(5)); // johnjohnjohnjohn
-console.log(`${firstName} `.repeat(5)); // john john john john
+console.log(agesES6);
+
+agesES6 = years.map((el, index) => `Age element ${index + 1}: ${2019 - el}.`);
+console.log(agesES6);
+
+agesES6 = years.map((el, index) => {
+  const now = new Date().getFullYear;
+  const age = now - el;
+  return `Age element ${index + 1}: ${2019 - el}.`;
+});
+console.log(agesES6);
