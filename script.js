@@ -175,24 +175,10 @@
 // };
 // box5.clickMe(); // In this context (without line 168), this is referring to the global or window object, position and color are NOT defined in this object
 
-const boxES6 = {
-  color: "green",
-  position: 1,
-  clickMe: function() {
-    document.querySelector(".green").addEventListener("click", () => {
-      // Arrow function here shares the context of the boxES6
-      var str =
-        "This is box number " + this.position + " and it is " + this.color;
-      alert(str);
-    });
-  }
-};
-boxES6.clickMe();
-
-// const boxES66 = {
+// const boxES6 = {
 //   color: "green",
 //   position: 1,
-//   clickMe: () => { // Arrow function at this point shares the global this keyword or the window object
+//   clickMe: function() {
 //     document.querySelector(".green").addEventListener("click", () => {
 //       // Arrow function here shares the context of the boxES6
 //       var str =
@@ -201,31 +187,85 @@ boxES6.clickMe();
 //     });
 //   }
 // };
-// boxES66.clickMe();
+// boxES6.clickMe();
 
-// ES5
-function Person(name) {
-  this.name = name;
+// // const boxES66 = {
+// //   color: "green",
+// //   position: 1,
+// //   clickMe: () => { // Arrow function at this point shares the global this keyword or the window object
+// //     document.querySelector(".green").addEventListener("click", () => {
+// //       // Arrow function here shares the context of the boxES6
+// //       var str =
+// //         "This is box number " + this.position + " and it is " + this.color;
+// //       alert(str);
+// //     });
+// //   }
+// // };
+// // boxES66.clickMe();
+
+// // ES5
+// function Person(name) {
+//   this.name = name;
+// }
+// Person.prototype.myFriends5 = function(friends) {
+//   var arr = friends.map(
+//     function(x) {
+//       return this.name + " is friends with " + x;
+//     }.bind(this)
+//   );
+//   console.log(arr);
+// };
+
+// var friends = ["bobby", "peggy", "hank"];
+
+// new Person("John").myFriends5(friends);
+
+// // ES6
+// Person.prototype.myFriends6 = function(friends) {
+//   var arr = friends.map(x => `${this.name} is friends with ${x}`);
+//   console.log(arr);
+// };
+
+// var friends = ["bobby", "peggy", "hank"];
+
+// new Person("Johnny").myFriends6(friends);
+
+/**
+ * Destructuring
+ */
+
+// // ES5
+// var john = ["John", 26];
+// var name = john[0];
+// var age = john[1];
+// console.log(name + " " + age);
+
+// ES6 w/ Destructuring
+const [name, age] = ["John", 26];
+console.log(`${name} is ${age} years old`);
+
+const obj = {
+  firstName: "John",
+  lastName: "Smith"
+};
+
+// If destructuring objects {}, can use same keys as obj
+const { firstName, lastName } = obj;
+console.log(`Hello, ${firstName} ${lastName}`);
+
+// Can destructure objects to use different keys
+const { firstName: a, lastName: b } = obj;
+console.log(`Hello, ${a} ${b}`);
+
+// More practical example ...
+
+// Given multiple values returned by a function ...
+function calcAgeRetirement(year) {
+  const age = new Date().getFullYear() - year;
+  return [age, 65 - age];
 }
-Person.prototype.myFriends5 = function(friends) {
-  var arr = friends.map(
-    function(x) {
-      return this.name + " is friends with " + x;
-    }.bind(this)
-  );
-  console.log(arr);
-};
 
-var friends = ["bobby", "peggy", "hank"];
-
-new Person("John").myFriends5(friends);
-
-// ES6
-Person.prototype.myFriends6 = function(friends) {
-  var arr = friends.map(x => `${this.name} is friends with ${x}`);
-  console.log(arr);
-};
-
-var friends = ["bobby", "peggy", "hank"];
-
-new Person("Johnny").myFriends6(friends);
+// Can easily destructure into own variables
+const [age1, retirement] = calcAgeRetirement(1990);
+console.log(age1);
+console.log(retirement);
