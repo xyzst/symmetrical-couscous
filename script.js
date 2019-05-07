@@ -70,3 +70,24 @@
 /**
  * Blocks and IIFEs
  */
+
+/*  Similar to an IIFE */
+{
+  // variables private to this block scope
+  const a = 1;
+  let b = 2;
+  // variables accessible outside of the block scope
+  var c = 3;
+}
+
+// console.log(a + b); // ReferenceError, a and b are BLOCK scoped
+console.log(c);
+
+/**
+ * ES5
+ */
+// (function() {
+//   var c = 3;
+// })();
+
+// console.log(c);
