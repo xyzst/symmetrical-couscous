@@ -132,25 +132,100 @@
  * Arrow functions
  */
 
-const years = [1990, 1965, 1982, 1937];
+// const years = [1990, 1965, 1982, 1937];
+
+// // ES5
+// var agesES5 = years.map(function(x) {
+//   return 2019 - x;
+// });
+// console.log(agesES5);
+
+// // ES6
+// let agesES6 = years.map(x => 2019 - x);
+
+// console.log(agesES6);
+
+// agesES6 = years.map((el, index) => `Age element ${index + 1}: ${2019 - el}.`);
+// console.log(agesES6);
+
+// agesES6 = years.map((el, index) => {
+//   const now = new Date().getFullYear;
+//   const age = now - el;
+//   return `Age element ${index + 1}: ${2019 - el}.`;
+// });
+// console.log(agesES6);
+
+/**
+ * Arrow functions, part II
+ * ARROW FUNCTIONS DO NOT HAVE THEIR OWN this KEYWORD, BUT SHARE THE SURROUNDING this KEYWORD (LEXICAL this VARIABLE)
+ */
 
 // ES5
-var agesES5 = years.map(function(x) {
-  return 2019 - x;
-});
-console.log(agesES5);
+// var box5 = {
+//   color: "green",
+//   position: 1,
+//   clickMe: function() {
+//     var self = this; // need to add to access box5 `this`
+//     document.querySelector(".green").addEventListener("click", function() {
+//       var str =
+//         "This is box number " + self.position + " and it is " + self.color;
+//       alert(str);
+//     });
+//   }
+// };
+// box5.clickMe(); // In this context (without line 168), this is referring to the global or window object, position and color are NOT defined in this object
+
+const boxES6 = {
+  color: "green",
+  position: 1,
+  clickMe: function() {
+    document.querySelector(".green").addEventListener("click", () => {
+      // Arrow function here shares the context of the boxES6
+      var str =
+        "This is box number " + this.position + " and it is " + this.color;
+      alert(str);
+    });
+  }
+};
+boxES6.clickMe();
+
+// const boxES66 = {
+//   color: "green",
+//   position: 1,
+//   clickMe: () => { // Arrow function at this point shares the global this keyword or the window object
+//     document.querySelector(".green").addEventListener("click", () => {
+//       // Arrow function here shares the context of the boxES6
+//       var str =
+//         "This is box number " + this.position + " and it is " + this.color;
+//       alert(str);
+//     });
+//   }
+// };
+// boxES66.clickMe();
+
+// ES5
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.myFriends5 = function(friends) {
+  var arr = friends.map(
+    function(x) {
+      return this.name + " is friends with " + x;
+    }.bind(this)
+  );
+  console.log(arr);
+};
+
+var friends = ["bobby", "peggy", "hank"];
+
+new Person("John").myFriends5(friends);
 
 // ES6
-let agesES6 = years.map(x => 2019 - x);
+Person.prototype.myFriends6 = function(friends) {
+  var arr = friends.map(x => `${this.name} is friends with ${x}`);
+  console.log(arr);
+};
 
-console.log(agesES6);
+var friends = ["bobby", "peggy", "hank"];
 
-agesES6 = years.map((el, index) => `Age element ${index + 1}: ${2019 - el}.`);
-console.log(agesES6);
-
-agesES6 = years.map((el, index) => {
-  const now = new Date().getFullYear;
-  const age = now - el;
-  return `Age element ${index + 1}: ${2019 - el}.`;
-});
-console.log(agesES6);
+new Person("Johnny").myFriends6(friends);
