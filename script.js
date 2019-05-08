@@ -273,40 +273,72 @@
 /**
  * Arrays in ES6
  */
-const boxes = document.querySelectorAll(".box"); // returns NodeList
+// const boxes = document.querySelectorAll(".box"); // returns NodeList
 
-// ES5
-var boxesArrES5 = Array.prototype.slice.call(boxes);
-// boxesArrES5.forEach(function(curr) {
-//   curr.style.backgroundColor = "dodgerblue";
-// });
+// // ES5
+// var boxesArrES5 = Array.prototype.slice.call(boxes);
+// // boxesArrES5.forEach(function(curr) {
+// //   curr.style.backgroundColor = "dodgerblue";
+// // });
 
-// ES6
-const boxesArrES6 = Array.from(boxes); // Transform NodeList -> Array
-boxesArrES6.forEach(x => (x.style.backgroundColor = "dodgerblue"));
+// // ES6
+// const boxesArrES6 = Array.from(boxes); // Transform NodeList -> Array
+// boxesArrES6.forEach(x => (x.style.backgroundColor = "dodgerblue"));
 
-// ES5
-// for (var i = 0; i < boxesArrES5.length; i++) {
-//   if (boxesArrES5[i].className === "box blue") continue;
+// // ES5
+// // for (var i = 0; i < boxesArrES5.length; i++) {
+// //   if (boxesArrES5[i].className === "box blue") continue;
 
-//   boxesArrES5[i].textContent = "I changed to blue!";
+// //   boxesArrES5[i].textContent = "I changed to blue!";
+// // }
+
+// // ES6 "for of loop"
+// for (const curr of boxesArrES6) {
+//   if (curr.className.includes("blue")) continue;
+//   curr.textContent = "I changed to blue!";
 // }
 
-// ES6 "for of loop"
-for (const curr of boxesArrES6) {
-  if (curr.className.includes("blue")) continue;
-  curr.textContent = "I changed to blue!";
+// // ES5
+// var ages = [12, 17, 8, 21, 14, 11];
+// var full = ages.map(function(curr) {
+//   return curr >= 18;
+// });
+// console.log(full);
+// console.log(full.indexOf(true));
+// console.log(ages[full.indexOf(true)]);
+
+// // ES6
+// console.log(ages.findIndex(curr => curr >= 18));
+// console.log(ages.find(cur => cur >= 18));
+
+/**
+ * Spread operator
+ */
+function addFourAges(a, b, c, d) {
+  return a + b + c + d;
 }
 
+var sum1 = addFourAges(18, 30, 12, 21);
+console.log(sum1);
+
 // ES5
-var ages = [12, 17, 8, 21, 14, 11];
-var full = ages.map(function(curr) {
-  return curr >= 18;
-});
-console.log(full);
-console.log(full.indexOf(true));
-console.log(ages[full.indexOf(true)]);
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages); // Take array and apply function to array
+console.log(sum2);
 
 // ES6
-console.log(ages.findIndex(curr => curr >= 18));
-console.log(ages.find(cur => cur >= 18));
+var sum3 = addFourAges(...ages); // Expand array into components
+console.log(sum3);
+
+// Joining arrays
+const familySmith = ["John", "Jane", "Mark"];
+const familyMiller = ["mary", "bob", "anne"];
+const bigFamily = [...familySmith, ...familyMiller, "lilly"]; // Expand each array into individual elements, combine into bigFamily
+console.log(bigFamily);
+
+// can also be used for node lists!
+const header = document.querySelector("h1");
+const boxes = document.querySelectorAll(".box");
+
+const all = [header, ...boxes];
+Array.from(all).forEach(x => (x.style.color = "purple")); // select all h1 and text, change to purple
