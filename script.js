@@ -240,32 +240,73 @@
 // var age = john[1];
 // console.log(name + " " + age);
 
-// ES6 w/ Destructuring
-const [name, age] = ["John", 26];
-console.log(`${name} is ${age} years old`);
+// // ES6 w/ Destructuring
+// const [name, age] = ["John", 26];
+// console.log(`${name} is ${age} years old`);
 
-const obj = {
-  firstName: "John",
-  lastName: "Smith"
-};
+// const obj = {
+//   firstName: "John",
+//   lastName: "Smith"
+// };
 
-// If destructuring objects {}, can use same keys as obj
-const { firstName, lastName } = obj;
-console.log(`Hello, ${firstName} ${lastName}`);
+// // If destructuring objects {}, can use same keys as obj
+// const { firstName, lastName } = obj;
+// console.log(`Hello, ${firstName} ${lastName}`);
 
-// Can destructure objects to use different keys
-const { firstName: a, lastName: b } = obj;
-console.log(`Hello, ${a} ${b}`);
+// // Can destructure objects to use different keys
+// const { firstName: a, lastName: b } = obj;
+// console.log(`Hello, ${a} ${b}`);
 
-// More practical example ...
+// // More practical example ...
 
-// Given multiple values returned by a function ...
-function calcAgeRetirement(year) {
-  const age = new Date().getFullYear() - year;
-  return [age, 65 - age];
+// // Given multiple values returned by a function ...
+// function calcAgeRetirement(year) {
+//   const age = new Date().getFullYear() - year;
+//   return [age, 65 - age];
+// }
+
+// // Can easily destructure into own variables
+// const [age1, retirement] = calcAgeRetirement(1990);
+// console.log(age1);
+// console.log(retirement);
+
+/**
+ * Arrays in ES6
+ */
+const boxes = document.querySelectorAll(".box"); // returns NodeList
+
+// ES5
+var boxesArrES5 = Array.prototype.slice.call(boxes);
+// boxesArrES5.forEach(function(curr) {
+//   curr.style.backgroundColor = "dodgerblue";
+// });
+
+// ES6
+const boxesArrES6 = Array.from(boxes); // Transform NodeList -> Array
+boxesArrES6.forEach(x => (x.style.backgroundColor = "dodgerblue"));
+
+// ES5
+// for (var i = 0; i < boxesArrES5.length; i++) {
+//   if (boxesArrES5[i].className === "box blue") continue;
+
+//   boxesArrES5[i].textContent = "I changed to blue!";
+// }
+
+// ES6 "for of loop"
+for (const curr of boxesArrES6) {
+  if (curr.className.includes("blue")) continue;
+  curr.textContent = "I changed to blue!";
 }
 
-// Can easily destructure into own variables
-const [age1, retirement] = calcAgeRetirement(1990);
-console.log(age1);
-console.log(retirement);
+// ES5
+var ages = [12, 17, 8, 21, 14, 11];
+var full = ages.map(function(curr) {
+  return curr >= 18;
+});
+console.log(full);
+console.log(full.indexOf(true));
+console.log(ages[full.indexOf(true)]);
+
+// ES6
+console.log(ages.findIndex(curr => curr >= 18));
+console.log(ages.find(cur => cur >= 18));
