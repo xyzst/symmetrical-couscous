@@ -314,31 +314,31 @@
 /**
  * Spread operator
  */
-function addFourAges(a, b, c, d) {
-  return a + b + c + d;
-}
+// function addFourAges(a, b, c, d) {
+//   return a + b + c + d;
+// }
 
-var sum1 = addFourAges(18, 30, 12, 21);
-console.log(sum1);
+// var sum1 = addFourAges(18, 30, 12, 21);
+// console.log(sum1);
 
-// ES5
-var ages = [18, 30, 12, 21];
-var sum2 = addFourAges.apply(null, ages); // Take array and apply function to array
-console.log(sum2);
+// // ES5
+// var ages = [18, 30, 12, 21];
+// var sum2 = addFourAges.apply(null, ages); // Take array and apply function to array
+// console.log(sum2);
 
-// ES6
-var sum3 = addFourAges(...ages); // Expand array into components
-console.log(sum3);
+// // ES6
+// var sum3 = addFourAges(...ages); // Expand array into components
+// console.log(sum3);
 
-// Joining arrays
-const familySmith = ["John", "Jane", "Mark"];
-const familyMiller = ["mary", "bob", "anne"];
-const bigFamily = [...familySmith, ...familyMiller, "lilly"]; // Expand each array into individual elements, combine into bigFamily
-console.log(bigFamily);
+// // Joining arrays
+// const familySmith = ["John", "Jane", "Mark"];
+// const familyMiller = ["mary", "bob", "anne"];
+// const bigFamily = [...familySmith, ...familyMiller, "lilly"]; // Expand each array into individual elements, combine into bigFamily
+// console.log(bigFamily);
 
-// can also be used for node lists!
-const header = document.querySelector("h1");
-const boxes = document.querySelectorAll(".box");
+// // can also be used for node lists!
+// const header = document.querySelector("h1");
+// const boxes = document.querySelectorAll(".box");
 
-const all = [header, ...boxes];
-Array.from(all).forEach(x => (x.style.color = "purple")); // select all h1 and text, change to purple
+// const all = [header, ...boxes];
+// Array.from(all).forEach(x => (x.style.color = "purple")); // select all h1 and text, change to purple
