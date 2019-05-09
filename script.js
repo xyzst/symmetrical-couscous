@@ -372,24 +372,61 @@
 // ES5 way with "arguments" keyword
 // Scenario where we want the first parameter to act as the "limit", and the
 // remaining parameters are the years
-function isFullAgeES5(limit) {
-  var now = new Date();
-  var argsArray = Array.prototype.slice.call(arguments, 1);
-  argsArray.forEach(function(curr) {
-    console.log(now.getFullYear() - curr >= limit);
-  });
+// function isFullAgeES5(limit) {
+//   var now = new Date();
+//   var argsArray = Array.prototype.slice.call(arguments, 1);
+//   argsArray.forEach(function(curr) {
+//     console.log(now.getFullYear() - curr >= limit);
+//   });
+// }
+
+// isFullAgeES5(16, 1990, 1965, 2005, 2002);
+// // isFullAgeES5(1990, 1965, 2005, 1999, 2017);
+
+// //ES6 way using rest parameters
+// // '...' (rest operator) transforms arguments into an array
+// // just add the 'limit' parameter
+// function isFullAgeES6(limit, ...years) {
+//   var now = new Date();
+//   years.forEach(curr => console.log(now.getFullYear() - curr >= limit));
+// }
+
+// isFullAgeES6(21, 1990, 1965, 2005);
+// isFullAgeES6(16, 1990, 1965, 2005, 1900, 2009);
+
+/**
+ * Default parameters
+ */
+// ES5 way
+function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+  this.firstName = firstName;
+  this.lastName = lastName === undefined ? "Smith" : lastName;
+  this.yearOfBirth = yearOfBirth;
+  this.nationality = nationality === undefined ? "American" : nationality;
+}
+// the lastName, and nationality parameters will be 'undefined'
+var john = new SmithPerson("John", 1990);
+// nationality and lastName populated with American and Smith, by default
+console.log(john);
+
+// Can override defaults!
+var emily = new SmithPerson("Emily", 1991, "Diaz", "Spanish");
+console.log(emily);
+
+//ES6 way!
+function SmithPersonES6(
+  firstName,
+  yearOfBirth,
+  lastName = "Smith",
+  nationality = "American"
+) {
+  this.firstName = firstName;
+  this.yearOfBirth = yearOfBirth;
+  this.lastName = lastName;
+  this.nationality = nationality;
 }
 
-isFullAgeES5(16, 1990, 1965, 2005, 2002);
-// isFullAgeES5(1990, 1965, 2005, 1999, 2017);
-
-//ES6 way using rest parameters
-// '...' (rest operator) transforms arguments into an array
-// just add the 'limit' parameter
-function isFullAgeES6(limit, ...years) {
-  var now = new Date();
-  years.forEach(curr => console.log(now.getFullYear() - curr >= limit));
-}
-
-isFullAgeES6(21, 1990, 1965, 2005);
-isFullAgeES6(16, 1990, 1965, 2005, 1900, 2009);
+var johnES6 = new SmithPersonES6("John", 1990);
+var emilyES6 = new SmithPersonES6("Emily", 1991, "Diaz", "Spanish");
+console.log(johnES6);
+console.log(emilyES6);
