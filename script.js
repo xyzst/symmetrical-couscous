@@ -342,3 +342,54 @@
 
 // const all = [header, ...boxes];
 // Array.from(all).forEach(x => (x.style.color = "purple")); // select all h1 and text, change to purple
+
+/**
+ * Function Parameters / Rest Parameters -- ability to add arbitrary amount of arguments into function
+ */
+
+// // ES5 way with "arguments" keyword
+// function isFullAgeES5() {
+//   var now = new Date();
+//   var argsArray = Array.prototype.slice.call(arguments);
+//   argsArray.forEach(function(curr) {
+//     console.log(now.getFullYear() - curr >= 18);
+//   });
+// }
+
+// isFullAgeES5(1990, 1965, 2005);
+// isFullAgeES5(1990, 1965, 2005, 1999, 2017);
+
+// //ES6 way using rest parameters
+// // '...' (rest operator) transforms arguments into an array
+// function isFullAgeES6(...years) {
+//   var now = new Date();
+//   years.forEach(curr => console.log(now.getFullYear() - curr >= 18));
+// }
+
+// isFullAgeES6(1990, 1965, 2005);
+// isFullAgeES6(1990, 1965, 2005, 1900, 2009);
+
+// ES5 way with "arguments" keyword
+// Scenario where we want the first parameter to act as the "limit", and the
+// remaining parameters are the years
+function isFullAgeES5(limit) {
+  var now = new Date();
+  var argsArray = Array.prototype.slice.call(arguments, 1);
+  argsArray.forEach(function(curr) {
+    console.log(now.getFullYear() - curr >= limit);
+  });
+}
+
+isFullAgeES5(16, 1990, 1965, 2005, 2002);
+// isFullAgeES5(1990, 1965, 2005, 1999, 2017);
+
+//ES6 way using rest parameters
+// '...' (rest operator) transforms arguments into an array
+// just add the 'limit' parameter
+function isFullAgeES6(limit, ...years) {
+  var now = new Date();
+  years.forEach(curr => console.log(now.getFullYear() - curr >= limit));
+}
+
+isFullAgeES6(21, 1990, 1965, 2005);
+isFullAgeES6(16, 1990, 1965, 2005, 1900, 2009);
