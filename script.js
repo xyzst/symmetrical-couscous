@@ -430,3 +430,33 @@
 // var emilyES6 = new SmithPersonES6("Emily", 1991, "Diaz", "Spanish");
 // console.log(johnES6);
 // console.log(emilyES6);
+
+/**
+ * Maps in ES6
+ */
+
+const q1 = new Map();
+q1.set("q", "what is the official name of the latest major JS version?");
+q1.set(1, "ES5");
+q1.set(2, "ES6");
+q1.set(3, "ES2015");
+q1.set(4, "ES7");
+q1.set("correct", 3);
+q1.set(true, "CORRECT ANSWER");
+q1.set(false, "WRONG!");
+
+// console.log(q1.get("q"));
+// console.log(q1.size);
+// q1.has(4) ? console.log("4 exists") : console.log("4 does not exist");
+// console.log(q1.delete(4));
+// q1.clear();
+// q1.forEach((v, k) => console.log(`Key: ${k}, Value: ${v}`));
+
+for (let [k, v] of q1.entries()) {
+  //   console.log(`Key: ${k}, Value: ${v}`);
+  if (typeof k === "number") console.log(`Answer ${k}: ${v}`);
+}
+
+const ans = parseInt(prompt("Write the correct answer"));
+
+console.log(q1.get(q1.get("correct") === ans));
