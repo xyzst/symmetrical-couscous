@@ -398,35 +398,35 @@
  * Default parameters
  */
 // ES5 way
-function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
-  this.firstName = firstName;
-  this.lastName = lastName === undefined ? "Smith" : lastName;
-  this.yearOfBirth = yearOfBirth;
-  this.nationality = nationality === undefined ? "American" : nationality;
-}
-// the lastName, and nationality parameters will be 'undefined'
-var john = new SmithPerson("John", 1990);
-// nationality and lastName populated with American and Smith, by default
-console.log(john);
+// function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+//   this.firstName = firstName;
+//   this.lastName = lastName === undefined ? "Smith" : lastName;
+//   this.yearOfBirth = yearOfBirth;
+//   this.nationality = nationality === undefined ? "American" : nationality;
+// }
+// // the lastName, and nationality parameters will be 'undefined'
+// var john = new SmithPerson("John", 1990);
+// // nationality and lastName populated with American and Smith, by default
+// console.log(john);
 
-// Can override defaults!
-var emily = new SmithPerson("Emily", 1991, "Diaz", "Spanish");
-console.log(emily);
+// // Can override defaults!
+// var emily = new SmithPerson("Emily", 1991, "Diaz", "Spanish");
+// console.log(emily);
 
-//ES6 way!
-function SmithPersonES6(
-  firstName,
-  yearOfBirth,
-  lastName = "Smith",
-  nationality = "American"
-) {
-  this.firstName = firstName;
-  this.yearOfBirth = yearOfBirth;
-  this.lastName = lastName;
-  this.nationality = nationality;
-}
+// //ES6 way!
+// function SmithPersonES6(
+//   firstName,
+//   yearOfBirth,
+//   lastName = "Smith",
+//   nationality = "American"
+// ) {
+//   this.firstName = firstName;
+//   this.yearOfBirth = yearOfBirth;
+//   this.lastName = lastName;
+//   this.nationality = nationality;
+// }
 
-var johnES6 = new SmithPersonES6("John", 1990);
-var emilyES6 = new SmithPersonES6("Emily", 1991, "Diaz", "Spanish");
-console.log(johnES6);
-console.log(emilyES6);
+// var johnES6 = new SmithPersonES6("John", 1990);
+// var emilyES6 = new SmithPersonES6("Emily", 1991, "Diaz", "Spanish");
+// console.log(johnES6);
+// console.log(emilyES6);
