@@ -488,11 +488,19 @@ class PersonES6 {
     this.job = job;
   }
 
+  // Regular prototype method / class method
   calcAge() {
     let age = new Date().getFullYear() - this.yearOfBirth;
     console.log(age);
+  }
+
+  // static method -- cannot be inherited, nor called at the object level
+  static greeting() {
+    console.log("Hey there!");
   }
 }
 
 var johnES6 = new PersonES6("John", 1990, "Teacher");
 johnES6.calcAge();
+
+PersonES6.greeting();
