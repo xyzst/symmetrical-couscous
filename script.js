@@ -460,3 +460,39 @@
 // const ans = parseInt(prompt("Write the correct answer"));
 
 // console.log(q1.get(q1.get("correct") === ans));
+
+/**
+ * Classes -- syntatic sugar for prototypal inheritance
+ */
+
+//ES5
+var PersonES5 = function(name, yearOfBirth, job) {
+  this.name = name;
+  this.yearOfBirth = yearOfBirth;
+  this.job = job;
+};
+
+PersonES5.prototype.calcAge = function() {
+  var age = new Date().getFullYear() - this.yearOfBirth;
+  console.log(age);
+};
+
+var johnES5 = new PersonES5("John", 1990, "Teacher");
+johnES5.calcAge(); //29
+
+// ES6 classes
+class PersonES6 {
+  constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
+
+  calcAge() {
+    let age = new Date().getFullYear() - this.yearOfBirth;
+    console.log(age);
+  }
+}
+
+var johnES6 = new PersonES6("John", 1990, "Teacher");
+johnES6.calcAge();
