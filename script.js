@@ -504,3 +504,40 @@ var johnES6 = new PersonES6("John", 1990, "Teacher");
 johnES6.calcAge();
 
 PersonES6.greeting();
+
+/**
+ * Subclasses, inheritance
+ */
+// ES5
+var AthleteES5 = function(name, yearOfBirth, job, olympicGames, medals) {
+  PersonES5.call(this, name, yearOfBirth, job);
+  this.olympicGames = olympicGames;
+  this.medals = medals;
+};
+// Link the prototype chains first before adding new functions
+AthleteES5.prototype = Object.create(PersonES5.prototype);
+AthleteES5.prototype.wonMedal = function() {
+  this.medals++;
+  console.log(this.medals);
+};
+var darrenES5 = new AthleteES5("Darren", 1992, "Developer", 0, 0);
+darrenES5.calcAge();
+darrenES5.wonMedal();
+
+class AthleteES6 extends PersonES6 {
+  constructor(name, yearOfBirth, job, olympicGames, medals) {
+    super(name, yearOfBirth, job);
+    this.olympicGames = olympicGames;
+    this.medals = medals;
+  }
+
+  wonMedal() {
+    this.medals++;
+    console.log(this.medals);
+  }
+}
+
+var darrenES6 = new AthleteES6("Darren", 1992, "Developer", 0, 0);
+darrenES6.calcAge();
+darrenES6.wonMedal(); // 1
+darrenES6.wonMedal(); // 2
