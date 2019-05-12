@@ -543,6 +543,7 @@
 // darrenES6.wonMedal(); // 2
 
 /**
+ *
  * Coding Challenge
  * Suppose that you're working in a small town administration and you're in charge of two town elements
  *  1. Parks
@@ -563,4 +564,5 @@
  * All the report data should be printed to the console
  * HINT: use ES6 features: classes, subclasses, template strings, default parameters, maps, arrow functions,
  * destructuring ...
+ *
  */
