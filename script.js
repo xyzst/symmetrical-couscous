@@ -572,6 +572,39 @@ class Town {
     this.parks = parks;
     this.streets = streets;
   }
+
+  printTreeDensityOfAllParks() {
+    this.parks.forEach(x =>
+      console.log(
+        `${x.getName()}'s tree density: ${x.calculateTreeDensity()} per sq ft`
+      )
+    );
+  }
+
+  calculateAverageAgeOfParks() {
+    let totalParkAge = this.parks
+      .map(x => x.getParkAge())
+      .reduce((a, b) => a + b);
+    let averageParkAge = totalParkAge / this.parks.length;
+    console.log(
+      `Average age of the parks in this town/city: ${averageParkAge}`
+    );
+    return averageParkAge;
+  }
+
+  printParksWithOverOneThousandTrees() {
+    this.parks
+      .filter(x => x.getNumberOfTrees >= 1000)
+      .forEach(x => `${x.getName()} has >= 1000 trees`);
+  }
+
+  calculateAverageAndTotalLengthOfStreets() {
+    let totalLength = this.streets
+      .map(x => x.getLength())
+      .reduce((a, b) => a + b);
+    let averageLength = Math.round(totalLength / this.streets.length);
+    return [totalLength, averageLength];
+  }
 }
 
 class CityAsset {
@@ -583,18 +616,59 @@ class CityAsset {
 
 class Park extends CityAsset {
   constructor(name, yearBuilt, numberOfTrees, parkArea) {
-    this.name = name;
-    this.yearBuilt = yearBuilt;
+    super(name, yearBuilt);
     this.numberOfTrees = numberOfTrees;
     this.parkArea = parkArea;
+  }
+
+  calculateTreeDensity() {
+    return Math.round(this.numberOfTrees / this.parkArea);
+  }
+
+  getParkAge() {
+    let now = new Date().getFullYear();
+    return now - this.yearBuilt;
+  }
+
+  getNumberOfTrees() {
+    return this.numberOfTrees;
+  }
+
+  getName() {
+    return this.name;
   }
 }
 
 class Street extends CityAsset {
   constructor(name, yearBuilt, length, classification = "normal") {
-    this.name = name;
-    this.yearBuilt = yearBuilt;
+    super(name, yearBuilt);
     this.length = length;
     this.classification = classification;
   }
+
+  getLength() {
+    return this.length;
+  }
 }
+
+let butlerPark = new Park("Butler District Park", 2007, 1000000, 10000);
+let auditoriumShoresPark = new Park(
+  "Auditorium Shores at Town Lake Metropolitan Park",
+  1959,
+  50000,
+  100000
+);
+let burnetRd = new Street("Burnet Rd", 1950, 900);
+let cesarChavez = new Street("Cesar Chavez Rd", 1989, 700, "huge");
+let austin512 = new Town(
+  [butlerPark, auditoriumShoresPark],
+  [burnetRd, cesarChavez]
+);
+
+austin512.printTreeDensityOfAllParks();
+austin512.calculateAverageAgeOfParks();
+austin512.printParksWithOverOneThousandTrees();
+let [total, avg] = austin512.calculateAverageAndTotalLengthOfStreets();
+console.log(
+  `Total length of streets: ${total}, Average length of streets: ${avg}`
+);
