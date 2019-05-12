@@ -566,3 +566,35 @@
  * destructuring ...
  *
  */
+
+class Town {
+  constructor(parks = [], streets = []) {
+    this.parks = parks;
+    this.streets = streets;
+  }
+}
+
+class CityAsset {
+  constructor(name, yearBuilt) {
+    this.name = name;
+    this.yearBuilt = yearBuilt;
+  }
+}
+
+class Park extends CityAsset {
+  constructor(name, yearBuilt, numberOfTrees, parkArea) {
+    this.name = name;
+    this.yearBuilt = yearBuilt;
+    this.numberOfTrees = numberOfTrees;
+    this.parkArea = parkArea;
+  }
+}
+
+class Street extends CityAsset {
+  constructor(name, yearBuilt, length, classification = "normal") {
+    this.name = name;
+    this.yearBuilt = yearBuilt;
+    this.length = length;
+    this.classification = classification;
+  }
+}
